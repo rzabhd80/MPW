@@ -12,14 +12,18 @@ namespace app\core;
 
 class Application
 {
+    public static Application $app;
     public static string $root_directory;
     public Router $router;
+    public Response $response;
 
     public function __construct($root)
     {
+        self::$app = $this;
         self::$root_directory = $root;
-        $router = new Router(); 
+        $router = new Router();
         $this->router = $router;
+        $this->response = new Response();
     }
 
     public function run()
