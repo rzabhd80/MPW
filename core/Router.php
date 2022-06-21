@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\core;
 
 /**
  * this class is responsible for Route handling and returning proper view/callback function
@@ -28,7 +29,7 @@ class Router
     private function loadLayout()
     {
         ob_start();
-        include_once Application::$root_directory."/view/layout/template.php";
+        include_once Application::$root_directory . "/view/layout/template.php";
         return ob_get_clean();
     }
 
@@ -38,7 +39,6 @@ class Router
         include_once Application::$root_directory . "/view/$view.php";
         return ob_get_clean();
     }
-
     public function render($view)
     {
         $layout = $this->loadLayout();
@@ -53,9 +53,10 @@ class Router
         $method = Url::methodExtractor();
         $param = Url::paramExtractor();
         $callback_method = $this->routes[$method][$url] ?? null;
-        if ($callback_method === null)
-            return "Not found 404";
-        else {
+        if ($callback_method === null) {
+            Application::$app->response->setStatusCode(404);
+            return $this->render("404NotFound");
+        } else {
             if (is_string($callback_method)) {
                 return $this->render($callback_method);
             } else return call_user_func($callback_method);
