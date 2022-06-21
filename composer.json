@@ -1,0 +1,13 @@
+{
+    "name": "reza/mpw",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [{
+        "name": "rzabhd80",
+        "email": "rzxsism80@gmail.com"
+    }],
+    "require": {}
+}
