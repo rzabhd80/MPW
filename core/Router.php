@@ -33,16 +33,19 @@ class Router
         return ob_get_clean();
     }
 
-    private function renderView($view)
+    private function renderView($view, $params)
     {
+        foreach ($params as $key => $param) {
+            $$key = $param;
+        }
         ob_start();
         include_once Application::$root_directory . "/view/$view.php";
         return ob_get_clean();
     }
-    public function render($view)
+    public function render($view, $params = [])
     {
         $layout = $this->loadLayout();
-        $view_render = $this->renderView($view);
+        $view_render = $this->renderView($view, $params);
         return str_replace("{{content}}", $view_render, $layout);
     }
 
