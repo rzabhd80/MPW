@@ -10,7 +10,7 @@ class Controller extends CoreController
 
     public  function contact()
     {
-        return Application::$app->router->render("contact");
+        return $this->render("contact");
     }
 
     public  function contactUsForm()
