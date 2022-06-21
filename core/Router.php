@@ -62,7 +62,10 @@ class Router
         } else {
             if (is_string($callback_method)) {
                 return $this->render($callback_method);
-            } else return call_user_func($callback_method);
+            } else if (is_array($callback_method)) {
+                $callback_method[0] = new  $callback_method[0]();
+            };
+            return call_user_func($callback_method);
         }
     }
 }
