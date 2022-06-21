@@ -3,8 +3,9 @@
 namespace app\controller;
 
 use app\core\Application;
+use app\core\Controller as CoreController;
 
-class Controller
+class Controller extends CoreController
 {
 
     /**
@@ -28,7 +29,7 @@ class Controller
 
     public static function home()
     {
-        $param = ["fuck" => "me","j"=>"u"];
-        return Application::$app->router->render("home", $param);
+        $param = ["fuck" => "me", "j" => "u"];
+        return Controller::render("home", $param);
     }
 }
