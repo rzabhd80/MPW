@@ -12,6 +12,12 @@ use app\core;
 class Router
 {
     protected $routes = [];
+    public Request $request;
+
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
 
 
 
@@ -65,7 +71,7 @@ class Router
             } else if (is_array($callback_method)) {
                 $callback_method[0] = new  $callback_method[0]();
             };
-            return call_user_func($callback_method);
+            return call_user_func($callback_method,$this->request);
         }
     }
 }

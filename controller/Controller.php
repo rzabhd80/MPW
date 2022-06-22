@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\core\Application;
 use app\core\Controller as CoreController;
+use app\core\Request;
 
 class Controller extends CoreController
 {
@@ -13,7 +14,7 @@ class Controller extends CoreController
         return $this->render("contact");
     }
 
-    public  function contactUsForm()
+    public  function contactUsForm(Request $request)
     {
         return "contact us form submitted";
     }
