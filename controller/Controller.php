@@ -14,14 +14,14 @@ class Controller extends CoreController
         return $this->render("contact");
     }
 
-    public  function contactUsForm(Request $request)
+    public  function contactUsForm(Request $request) //post request must have an object of Request as argument
     {
+        var_dump($request);
         return "contact us form submitted";
     }
 
     public function home()
     {
-        $param = ["fuck" => "me", "j" => "u"];
-        return $this->render("home", $param);
+        return $this->render("home");
     }
 }

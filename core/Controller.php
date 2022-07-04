@@ -4,9 +4,14 @@ namespace app\core;
 
 class Controller
 {
-    public static function render($view, $params = [])
+    public  function render($view, $params = [])
     {
 
         return Application::$app->router->render($view, $params);
+    }
+
+    public function useLayout($layout)
+    {
+        Application::$app->router->useLayout($layout);
     }
 }

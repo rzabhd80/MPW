@@ -12,6 +12,8 @@ use app\core;
 class Router
 {
     protected $routes = [];
+    protected $layout = "template";
+
     public Request $request;
 
     public function __construct()
@@ -19,7 +21,13 @@ class Router
         $this->request = new Request();
     }
 
+    public function useLayout($layout)
+    {
 
+        if (file_exists("../view/layout/$layout.php"))
+
+            $this->layout = $layout;
+    }
 
     public function get($route, $callback)
     {
@@ -35,7 +43,7 @@ class Router
     private function loadLayout()
     {
         ob_start();
-        include_once Application::$root_directory . "/view/layout/template.php";
+        include_once Application::$root_directory . "/view/layout/$this->layout.php";
         return ob_get_clean();
     }
 
@@ -71,7 +79,7 @@ class Router
             } else if (is_array($callback_method)) {
                 $callback_method[0] = new  $callback_method[0]();
             };
-            return call_user_func($callback_method,$this->request);
+            return call_user_func($callback_method, $this->request);
         }
     }
 }
