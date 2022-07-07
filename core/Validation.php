@@ -105,14 +105,14 @@ class Validation
                 if (is_array($rule)) {
                     $rules_status[$attribute]  = Validation::resolver($request, $attribute, $rule[0], $rule[1]);
                 } else if (is_string($rule)) {
-                    $rules_status[$attribute]  = Validation::resolver($request, $attribute, $rule, []);
+                    $rules_status[$attribute]  = Validation::resolver($request, $attribute, $rule);
                 }
             }
         }
         return $rules_status;
     }
 
-    private static function resolver(Request $request, string $attribute, $rule, array $vars)
+    private static function resolver(Request $request, string $attribute, $rule, string  $vars = null)
     {
         switch ($rule) {
             case Validation::REQUIERD:
