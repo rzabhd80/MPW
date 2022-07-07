@@ -13,9 +13,9 @@ abstract class Model extends Repository
             }
         }
     }
-    public function validate()
+    public function validate(Request $request)
     {
-        return true;
+        return Validation::validate($request, $this);
     }
 
     public function store()
